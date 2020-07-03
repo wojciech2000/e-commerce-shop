@@ -38,8 +38,13 @@ router.post('/login', passport.authenticate('local', {session: false}) ,(req,res
         const { _id } = req.user
         const token = signToken(_id)
         res.cookie('access_token', token, { httpOnly: true, sameSite: true })
-        res.status(201).json({message: {msgBody: 'user has been logged', msgError: false}})
+        res.status(201).json({message: {msgBody: 'user has been logged in', msgError: false}})
     }
+})
+
+router.get('/logout', passport.authenticate('jwt', {session: false}) ,(req,res) => {
+    res.clearCookie('access_token')
+    res.json({message: {msgBody: 'user has been logged out', msgError: false}})
 })
 
 module.exports = router

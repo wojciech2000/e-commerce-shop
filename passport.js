@@ -32,11 +32,11 @@ passport.use(new LocalStrategy((username, password, done) => {
     User.findOne({username}, (err, user) => {
         // something wrong with db
         if(err)
-            return done(err, true, { message: 'erororo' })
+            return done(err, true)
         // user doesn't exist
         if(!user)
-            return done(null,false, { message: 'there is no user' })
+            return done(null,false)
         //found user
-        user.comparePassword(password, done, { message: 'user added' })
+        user.comparePassword(password, done)
     })
 }))
