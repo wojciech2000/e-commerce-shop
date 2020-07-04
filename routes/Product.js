@@ -38,11 +38,12 @@ router.post('/add', passport.authenticate('jwt', {session: false}), upload.singl
         if(err)
             res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
         else
-            res.status(201).json({message: {msgBody: product, msgError: false}})
+            res.status(201).json({message: {msgBody: 'added product', msgError: false}})
     })
 })
 
 router.delete('/delete/:id/:filename', passport.authenticate('jwt', {session: false}), (req,res) => {
+
     Product.findOneAndDelete({_id: req.params.id}, err => {
         if(err)
             res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
@@ -63,6 +64,16 @@ router.patch('/update/:id', passport.authenticate('jwt', {session: false}), uplo
             res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
         else
             res.status(201).json({message: {msgBody: 'updated', msgError: false}})
+    })
+})
+
+router.get('/datas', passport.authenticate('jwt', {session: false}), (req,res) => {
+
+    Product.find({}, (err, products) => {
+        if(err)
+            res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+        else
+            res.status(201).json({message: {msgBody: products, msgError: false}})
     })
 })
 
