@@ -1,0 +1,48 @@
+$header-font: 'Righteous', cursive;
+$main-font: 'Metrophobic', sans-serif;
+$number-font: 'Expletus Sans', cursive;
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html
+{
+    font-size: 62.5%;
+    font-family: $main-font;
+}
+
+ul
+{
+    list-style-type: none;
+}
+
+a
+{
+    text-decoration: none;
+    color: black;
+}
+
+input
+{
+    outline: none;
+    border: none;
+}
+
+h1
+{
+    font-size: 3rem;
+}
+
+h2
+{
+    font-size: 2.5rem;
+}
+
+h3
+{
+    font-size: 2rem;
+}

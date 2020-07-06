@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
-}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+html {
+  font-size: 62.5%;
+  font-family: "Metrophobic", sans-serif; }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+ul {
+  list-style-type: none; }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+a {
+  text-decoration: none;
+  color: black; }
+
+input {
+  outline: none;
+  border: none; }
+
+h1 {
+  font-size: 3rem; }
+
+h2 {
+  font-size: 2.5rem; }
+
+h3 {
+  font-size: 2rem; }
+
+.header {
+  width: 100%;
+  height: 70px;
+  background-color: #FF9211;
+  padding: 0 10%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  justify-content: space-between; }
+  .header__h1 {
+    color: white;
+    font-family: "Righteous", cursive;
+    font-weight: 200; }
+  .header__nav {
+    width: 220px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .header__nav svg {
+      font-size: 2rem; }
+    .header__nav a {
+      width: 9rem;
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.8rem;
+      padding-left: .4rem; }
+  @media (max-width: 600px) {
+    .header {
+      padding: 0 5%; }
+      .header__h1 {
+        font-size: 2.7rem; }
+      .header__nav {
+        width: 160px; }
+        .header__nav svg {
+          font-size: 1.6rem; }
+        .header__nav a {
+          width: 7.5rem;
+          font-size: 1.5rem; } }
