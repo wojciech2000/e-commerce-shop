@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "10.16.3",
+    "npm": "6.14.5"
+  },
   "scripts": {
     "start": "node server",
     "client": "cd client && npm run start",
     "sass": "node-sass client/src/App.scss -w client/src/App.css",
-    "dev": "npm run client & npm run sass"
+    "dev": "npm run client & npm run sass",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
