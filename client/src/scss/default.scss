@@ -1,6 +1,7 @@
 $header-font: 'Righteous', cursive;
 $main-font: 'Metrophobic', sans-serif;
 $number-font: 'Expletus Sans', cursive;
+$main-color: #FF9211;
 
 *
 {
@@ -15,21 +16,25 @@ html
     font-family: $main-font;
 }
 
+
+
 ul
 {
     list-style-type: none;
 }
 
-a
+a, p, span
 {
     text-decoration: none;
     color: black;
+    font-size: 1.8rem;
 }
 
 input
 {
     outline: none;
     border: none;
+    font-family: $main-font;
 }
 
 h1

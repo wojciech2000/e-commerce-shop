@@ -1,0 +1,53 @@
+.products
+{
+    &__search
+    {
+        border-radius: 10px;
+        border: 1px solid black;
+        padding: 1rem;
+        display: block;
+        margin: 30px auto 60px;
+        transition: border-color .2s ease;
+
+        &:focus
+        {
+            border-color: $main-color;
+        }
+
+    }
+
+    &__products-list
+    {
+        width: 80%;
+        padding: 0 5%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+
+        .product
+        {
+            display: flex;
+            flex-direction: column;
+            margin: 2.5rem 2rem;
+
+            &__image
+            {
+                width: 16rem;
+                height: 20rem;
+                object-fit: cover;
+                border-radius: 10px;
+                border: 1px solid #2C2C2C;
+            }
+
+            &__price
+            {
+                font-family: $number-font;
+                font-size: 2.5rem;
+                border-bottom: 1px solid $main-color;
+            }
+
+        }
+
+    }
+}

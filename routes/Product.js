@@ -67,7 +67,7 @@ router.patch('/update/:id', passport.authenticate('jwt', {session: false}), uplo
     })
 })
 
-router.get('/datas', passport.authenticate('jwt', {session: false}), (req,res) => {
+router.get('/datas', (req,res) => {
 
     Product.find({}, (err, products) => {
         if(err)

@@ -8,8 +8,8 @@ function Header() {
             <h1 className="header__h1">e-comerce</h1>
 
             <nav className="header__nav">
-                <a href=""><GrBasket /> Koszyk</a>
-                <a href=""><FaUserAlt /> Zaloguj</a>
+                <a href="#koszyk"><GrBasket /> Koszyk</a>
+                <a href="#zaloguj"><FaUserAlt /> Zaloguj</a>
             </nav>
 
         </header>
