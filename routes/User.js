@@ -9,17 +9,17 @@ router.post('/register', (req,res) => {
 
     User.findOne({username}, (err,user) => {
         if(err)
-        res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+        res.status(500).json(err)
         if(user)
-        res.status(400).json({message: {msgBody: 'username is already taken', msgError: true}})
+        res.status(400).json('username is already taken')
         else
         {
             const newUser = new User({username, password})
             newUser.save(err => {
                 if(err)
-                res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+                res.status(500).json(err)
                 else
-                res.status(201).json({message: {msgBody: 'account successfully create', msgError: false}})
+                res.status(201).json('account successfully create')
             })
         }
     })
@@ -38,13 +38,13 @@ router.post('/login', passport.authenticate('local', {session: false}) ,(req,res
         const { _id } = req.user
         const token = signToken(_id)
         res.cookie('access_token', token, { httpOnly: true, sameSite: true })
-        res.status(201).json({message: {msgBody: 'user has been logged in', msgError: false}})
+        res.status(201).json('user has been logged in')
     }
 })
 
 router.get('/logout', passport.authenticate('jwt', {session: false}) ,(req,res) => {
     res.clearCookie('access_token')
-    res.json({message: {msgBody: 'user has been logged out', msgError: false}})
+    res.json('user has been logged out')
 })
 
 module.exports = router

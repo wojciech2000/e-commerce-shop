@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 function Products() {
 
-    const [products, setProducts] = useState([])
     const [search, setSearch] = useState("")
+    const productState = useSelector(state => state.products)
 
-    useEffect(() => {
-        axios.get('/product/datas')
-        .then((data) => setProducts(data.data.message.msgBody))
-    }, [])
+    const { loading, products, error } = productState
 
     const filterProducts = () => (
         products.filter(product => (
@@ -22,15 +20,15 @@ function Products() {
             <input type="text" className="products__search" placeholder="Szukaj..." onChange={e => setSearch(e.target.value)}/>
 
             <div className="products__products-list">
-                {products &&
+                {loading ? <div style={{fontSize: '40px'}}>loading</div> : error ? <div>error</div> : products &&
 
-                    filterProducts().map(({name, price, image}, id) => (
+                    filterProducts().map(({_id, name, price, image}) => (
 
-                        <div key={id}  className="product">
+                        <Link to={`/product/${_id}`} key={_id}  className="product">
                             <img src={document.location.origin + '/uploads/' + image} className="product__image" alt="zdjęcie_produktu"/>
                             <span className="product__price">{price}zł</span>
                             <span className="product__name">{name}</span>
-                        </div>
+                        </Link>
 
                     ))
 

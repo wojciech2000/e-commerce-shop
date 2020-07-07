@@ -36,9 +36,9 @@ router.post('/add', passport.authenticate('jwt', {session: false}), upload.singl
     })
     product.save(err => {
         if(err)
-            res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+            res.status(500).json(err)
         else
-            res.status(201).json({message: {msgBody: 'added product', msgError: false}})
+            res.status(201).json('added product')
     })
 })
 
@@ -46,10 +46,10 @@ router.delete('/delete/:id/:filename', passport.authenticate('jwt', {session: fa
 
     Product.findOneAndDelete({_id: req.params.id}, err => {
         if(err)
-            res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+            res.status(500).json(err)
         else
             req.params.filename != "undefined" && fs.unlinkSync(`uploads/${req.params.filename}`)
-            res.status(201).json({message: {msgBody: 'removed', msgError: false}})
+            res.status(201).json('removed')
     })
 })
 
@@ -61,9 +61,9 @@ router.patch('/update/:id', passport.authenticate('jwt', {session: false}), uplo
         {$set: { name, price, size, brand, quantity, image: req.file.filename }},
         err => {
         if(err)
-            res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+            res.status(500).json(err)
         else
-            res.status(201).json({message: {msgBody: 'updated', msgError: false}})
+            res.status(201).json('updated')
     })
 })
 
@@ -71,9 +71,9 @@ router.get('/datas', (req,res) => {
 
     Product.find({}, (err, products) => {
         if(err)
-            res.status(500).json({message: {msgBody: 'error has occured', msgError: true}})
+            res.status(500).json(err)
         else
-            res.status(201).json({message: {msgBody: products, msgError: false}})
+            res.status(201).json(products)
     })
 })
 
