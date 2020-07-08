@@ -1,24 +1,31 @@
+html {
+  font-size: 62.5%;
+  font-family: "Metrophobic", sans-serif;
+  width: 100vw;
+  overflow-x: hidden; }
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
 
-html {
-  font-size: 62.5%;
-  font-family: "Metrophobic", sans-serif; }
-
 ul {
   list-style-type: none; }
 
-a, p, span {
+a, p, span, div {
   text-decoration: none;
   color: black;
   font-size: 1.8rem; }
 
-input {
+input, button {
   outline: none;
   border: none;
   font-family: "Metrophobic", sans-serif; }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
 
 h1 {
   font-size: 3rem; }
@@ -67,34 +74,185 @@ h3 {
           width: 7.5rem;
           font-size: 1.5rem; } }
 
-.products__search {
-  border-radius: 10px;
-  border: 1px solid black;
-  padding: 1rem;
-  display: block;
-  margin: 30px auto 60px;
-  transition: border-color .2s ease; }
-  .products__search:focus {
-    border-color: #FF9211; }
+.products {
+  min-height: calc(100vh - 110px);
+  padding-top: 30px; }
+  .products__search {
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 1rem;
+    display: block;
+    margin: 0 auto 60px;
+    transition: border-color .2s ease; }
+    .products__search:focus {
+      border-color: #FF9211; }
+  .products__products-list {
+    width: 80%;
+    padding: 0 5%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap; }
+    .products__products-list .product {
+      display: flex;
+      flex-direction: column;
+      margin: 2.5rem 2rem; }
+      .products__products-list .product__image {
+        width: 16rem;
+        height: 20rem;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid #2C2C2C; }
+      .products__products-list .product__price {
+        font-family: "Expletus Sans", cursive;
+        font-size: 2.5rem;
+        border-bottom: 1px solid #FF9211; }
+      .products__products-list .product__name {
+        color: #313131; }
 
-.products__products-list {
+.details {
   width: 80%;
-  padding: 0 5%;
+  min-height: calc(100vh - 110px);
   margin: 0 auto;
+  padding: 40px 0;
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap; }
-  .products__products-list .product {
+  align-items: center;
+  justify-content: space-evenly; }
+  .details__image {
+    min-width: 350px;
+    border: 1px solid #2C2C2C;
+    border-radius: 10px; }
+  .details__info {
+    height: 500px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: column; }
+  .details__price {
+    font-size: 3.5rem;
+    font-family: "Expletus Sans", cursive;
+    width: 100%;
+    border-bottom: 1px solid #FF9211; }
+  .details__description {
+    display: flex;
+    margin-top: -20px; }
+  .details__brand {
+    padding-right: 15px;
+    position: relative;
+    color: #313131; }
+    .details__brand::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 180%;
+      background-color: black; }
+  .details__name {
+    padding-left: 15px; }
+  .details__sizes {
     display: flex;
     flex-direction: column;
-    margin: 2.5rem 2rem; }
-    .products__products-list .product__image {
-      width: 16rem;
-      height: 20rem;
-      object-fit: cover;
-      border-radius: 10px;
-      border: 1px solid #2C2C2C; }
-    .products__products-list .product__price {
-      font-family: "Expletus Sans", cursive;
-      font-size: 2.5rem;
-      border-bottom: 1px solid #FF9211; }
+    width: 100%; }
+    .details__sizes span {
+      padding-bottom: 10px;
+      color: #636363; }
+    .details__sizes .sizes-container {
+      width: 100%;
+      display: flex; }
+      .details__sizes .sizes-container__size {
+        background-color: black;
+        margin-right: 15px;
+        color: white;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        font-size: 2.2rem;
+        cursor: pointer; }
+  .details__quantity {
+    display: flex;
+    flex-direction: column;
+    width: 100%; }
+    .details__quantity span {
+      color: #636363;
+      padding-bottom: 10px; }
+    .details__quantity .quantity-container {
+      display: flex; }
+      .details__quantity .quantity-container__input {
+        border: 1px solid black;
+        padding: 5px;
+        border-radius: 10px;
+        font-size: 2.2rem;
+        text-align: center;
+        background-color: #ececec;
+        height: 50px;
+        width: 65px;
+        margin-right: 10px; }
+      .details__quantity .quantity-container__buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; }
+      .details__quantity .quantity-container__add, .details__quantity .quantity-container__truncate {
+        width: 30px;
+        height: 22px;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        font-size: 2rem; }
+      .details__quantity .quantity-container__truncate {
+        color: black;
+        border: 1px solid black;
+        background-color: white; }
+  .details__add {
+    width: 200px;
+    height: 60px;
+    background-color: #FF9211;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    cursor: pointer; }
+    .details__add svg {
+      font-size: 2.7rem; }
+    .details__add span {
+      font-size: 2.5rem; }
+  @media (min-width: 1440px) {
+    .details {
+      width: 60%; }
+      .details__image {
+        width: 500px; }
+      .details__info {
+        height: 600px; }
+      .details__description {
+        display: flex;
+        margin-top: -40px; } }
+  @media (max-width: 900px) {
+    .details {
+      width: 100%; } }
+  @media (max-width: 768px) {
+    .details {
+      width: 100%; } }
+  @media (orientation: portrait) {
+    .details {
+      flex-direction: column; }
+      .details__add {
+        margin: 0 auto; } }
+
+.footer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  font-size: 1.5rem; }

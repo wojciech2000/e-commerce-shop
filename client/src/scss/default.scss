@@ -2,6 +2,15 @@ $header-font: 'Righteous', cursive;
 $main-font: 'Metrophobic', sans-serif;
 $number-font: 'Expletus Sans', cursive;
 $main-color: #FF9211;
+$display-height: calc(100vh - 110px);
+
+html
+{
+    font-size: 62.5%;
+    font-family: $main-font;
+    width: 100vw;
+    overflow-x: hidden;
+}
 
 *
 {
@@ -10,31 +19,29 @@ $main-color: #FF9211;
     box-sizing: border-box;
 }
 
-html
-{
-    font-size: 62.5%;
-    font-family: $main-font;
-}
-
-
-
 ul
 {
     list-style-type: none;
 }
 
-a, p, span
+a, p, span, div
 {
     text-decoration: none;
     color: black;
     font-size: 1.8rem;
 }
 
-input
+input, button
 {
     outline: none;
     border: none;
     font-family: $main-font;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 h1

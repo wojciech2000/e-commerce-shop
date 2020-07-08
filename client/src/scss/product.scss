@@ -1,0 +1,241 @@
+.details
+{
+    width: 80%;
+    min-height: $display-height;
+    margin: 0 auto;
+    padding: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    &__image
+    {
+        min-width: 350px;
+        border: 1px solid #2C2C2C;
+        border-radius: 10px;
+    }
+
+    &__info
+    {
+        height: 500px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-evenly;
+        flex-direction: column;
+    }
+
+    &__price
+    {
+        font-size: 3.5rem;
+        font-family: $number-font;
+        width: 100%;
+        border-bottom: 1px solid $main-color;
+    }
+
+    &__description
+    {
+        display: flex;
+        margin-top: -20px;
+    }
+
+    &__brand
+    {
+        padding-right: 15px;
+        position: relative;
+        color: #313131;
+
+        &::after
+        {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 180%;
+            background-color: black;
+        }
+
+    }
+
+    &__name
+    {
+        padding-left: 15px;
+    }
+
+    &__sizes
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        
+        span
+        {
+            padding-bottom: 10px;
+            color: #636363;
+        }
+
+        .sizes-container
+        {
+            width: 100%;
+            display: flex;
+
+            &__size
+            {
+                background-color: black;
+                margin-right: 15px;
+                color: white;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                font-size: 2.2rem;
+                cursor: pointer;
+            }
+
+        }
+
+    }
+
+    &__quantity
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        span
+        {
+            color: #636363;
+            padding-bottom: 10px;
+        }
+
+        .quantity-container
+        {
+            display: flex;
+
+            &__input
+            {
+                border: 1px solid black;
+                padding: 5px;
+                border-radius: 10px;
+                font-size: 2.2rem;
+                text-align: center;
+                background-color: #ececec;
+                height: 50px;
+                width: 65px;
+                margin-right: 10px;
+            }
+
+            &__buttons
+            {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+
+            &__add
+            {
+                width: 30px;
+                height: 22px;
+                background-color: black;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 5px;
+                color: white;
+                cursor: pointer;
+                font-size: 2rem;
+            }
+
+            &__truncate
+            {
+                @extend .quantity-container__add;
+                color: black;
+                border: 1px solid black;
+                background-color: white;
+            }
+        }
+    }
+
+    &__add
+    {
+        width: 200px;
+        height: 60px;
+        background-color: $main-color;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        cursor: pointer;
+
+        svg
+        {
+            font-size: 2.7rem;
+        }
+
+        span
+        {
+            font-size: 2.5rem;
+        }
+
+    }
+
+    @media (min-width: 1440px)
+    {
+        &
+        {
+            width: 60%;
+
+            &__image
+            {
+                width: 500px;
+            }
+
+            &__info
+            {
+                height: 600px;
+            }
+
+            &__description
+            {
+                display: flex;
+                margin-top: -40px;
+            }
+
+        }
+    }
+
+    @media (max-width: 900px)
+    {
+        &
+        {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 768px)
+    {
+        &
+        {
+            width: 100%;
+        }
+    }
+
+    @media (orientation: portrait)
+    {
+        &
+        {
+            flex-direction: column;
+
+            &__add
+            {
+                margin: 0 auto;
+            }
+
+        }
+        
+    }
+
+}
