@@ -8,17 +8,31 @@ function Product(props) {
     const { loading, products, error } = useSelector(state => state.products)
     const product = products && products.find(({_id}) => _id === id)
 
-    let [quantity, setQuantity] = useState(1)
 
-    const addQuantity = () => {
+    const [quantity, setQuantity] = useState(1)
+
+    const incrementQuantity = () => {
         (quantity >= 1 && quantity < product.quantity) && setQuantity(prevQty => prevQty + 1)
     }
-    const truncateQuantity = () => {
+    const decrementQuantity = () => {
         (quantity > 1 && quantity <= product.quantity) && setQuantity(prevQty => prevQty - 1)
     }
 
     const changeQuantity = e => {
         (e.target.value > 0 && e.target.value <= product.quantity && e.target.value) && setQuantity(parseInt(e.target.value))
+    }
+
+
+    const [size, setSize] = useState(product && product.size)
+
+    const chooseSize = e => {
+        const sizeDivs = document.querySelectorAll('.sizes-container__size')
+        const choosenDiv = e.target
+
+        sizeDivs.forEach(div => div.classList.remove('sizes-container__size--active'))
+
+        choosenDiv.classList.add('sizes-container__size--active')
+        setSize(choosenDiv.textContent)
     }
 
     return (
@@ -47,10 +61,10 @@ function Product(props) {
                         <span>Rozmiar</span>
 
                         <div className="sizes-container">
-                            <div className="sizes-container__size">{product.size}</div>
-                            <div className="sizes-container__size">S</div>
-                            <div className="sizes-container__size">M</div>
-                            <div className="sizes-container__size">L</div>
+                            <div className="sizes-container__size sizes-container__size--active" onClick={chooseSize}>{product.size}</div>
+                            <div className="sizes-container__size" onClick={chooseSize}>S</div>
+                            <div className="sizes-container__size" onClick={chooseSize}>M</div>
+                            <div className="sizes-container__size" onClick={chooseSize}>L</div>
                         </div>
                     </div>
 
@@ -61,10 +75,10 @@ function Product(props) {
                             <input type="number" className="quantity-container__input" value={quantity} onChange={changeQuantity}/>
                             
                             <div className="quantity-container__buttons">
-                                <button className="quantity-container__add" onClick={addQuantity}>
+                                <button className="quantity-container__add" onClick={incrementQuantity}>
                                     +
                                 </button>
-                                <button className="quantity-container__truncate" onClick={truncateQuantity}>
+                                <button className="quantity-container__truncate" onClick={decrementQuantity}>
                                     -
                                 </button>
                             </div>

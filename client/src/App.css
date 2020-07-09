@@ -163,7 +163,7 @@ h3 {
       width: 100%;
       display: flex; }
       .details__sizes .sizes-container__size {
-        background-color: black;
+        background-color: #2b2b2b;
         margin-right: 15px;
         color: white;
         width: 50px;
@@ -173,7 +173,10 @@ h3 {
         justify-content: center;
         border-radius: 10px;
         font-size: 2.2rem;
-        cursor: pointer; }
+        cursor: pointer;
+        transition: background-color .2s ease; }
+        .details__sizes .sizes-container__size--active {
+          background-color: #FF9211; }
   .details__quantity {
     display: flex;
     flex-direction: column;
