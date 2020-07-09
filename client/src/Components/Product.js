@@ -23,7 +23,7 @@ function Product(props) {
     }
 
 
-    const [size, setSize] = useState(product && product.size)
+    const [size, setSize] = useState(product && product.size[0])
 
     const chooseSize = e => {
         const sizeDivs = document.querySelectorAll('.sizes-container__size')
@@ -61,10 +61,9 @@ function Product(props) {
                         <span>Rozmiar</span>
 
                         <div className="sizes-container">
-                            <div className="sizes-container__size sizes-container__size--active" onClick={chooseSize}>{product.size}</div>
-                            <div className="sizes-container__size" onClick={chooseSize}>S</div>
-                            <div className="sizes-container__size" onClick={chooseSize}>M</div>
-                            <div className="sizes-container__size" onClick={chooseSize}>L</div>
+                            {product.size.map((size, id) => (
+                                 <div key={id} className={id === 0 ? "sizes-container__size sizes-container__size--active" : "sizes-container__size"} onClick={chooseSize}>{size}</div>
+                            ))}
                         </div>
                     </div>
 

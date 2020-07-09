@@ -120,9 +120,11 @@ h3 {
   align-items: center;
   justify-content: space-evenly; }
   .details__image {
-    min-width: 350px;
+    width: 350px;
+    height: 450px;
     border: 1px solid #2C2C2C;
-    border-radius: 10px; }
+    border-radius: 10px;
+    object-fit: cover; }
   .details__info {
     height: 500px;
     display: flex;
@@ -232,7 +234,8 @@ h3 {
     .details {
       width: 60%; }
       .details__image {
-        width: 500px; }
+        width: 475px;
+        height: 575px; }
       .details__info {
         height: 600px; }
       .details__description {

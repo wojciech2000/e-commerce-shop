@@ -29,7 +29,7 @@ router.post('/add', passport.authenticate('jwt', {session: false}), upload.singl
     const product = new Product({
         name: req.body.name,
         price: req.body.price,
-        size: req.body.size,
+        size: req.body.size.split(','),
         brand: req.body.brand,
         quantity: req.body.quantity,
         image: req.file.filename

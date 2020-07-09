@@ -10,9 +10,11 @@
 
     &__image
     {
-        min-width: 350px;
+        width: 350px;
+        height: 450px;
         border: 1px solid #2C2C2C;
         border-radius: 10px;
+        object-fit: cover;
     }
 
     &__info
@@ -197,7 +199,8 @@
 
             &__image
             {
-                width: 500px;
+                width: 475px;
+                height: 575px;
             }
 
             &__info
