@@ -240,7 +240,9 @@ h3 {
       width: 100%; } }
   @media (max-width: 768px) {
     .details {
-      width: 100%; } }
+      flex-direction: column; }
+      .details__add {
+        margin: 0 auto; } }
   @media (orientation: portrait) {
     .details {
       flex-direction: column; }

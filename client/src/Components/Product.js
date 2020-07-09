@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { GrBasket } from 'react-icons/gr'
 
@@ -7,6 +7,19 @@ function Product(props) {
     const id = props.match.params.id
     const { loading, products, error } = useSelector(state => state.products)
     const product = products && products.find(({_id}) => _id === id)
+
+    let [quantity, setQuantity] = useState(1)
+
+    const addQuantity = () => {
+        (quantity >= 1 && quantity < product.quantity) && setQuantity(prevQty => prevQty + 1)
+    }
+    const truncateQuantity = () => {
+        (quantity > 1 && quantity <= product.quantity) && setQuantity(prevQty => prevQty - 1)
+    }
+
+    const changeQuantity = e => {
+        (e.target.value > 0 && e.target.value <= product.quantity && e.target.value) && setQuantity(parseInt(e.target.value))
+    }
 
     return (
         <div>
@@ -45,13 +58,13 @@ function Product(props) {
                         <span>Ilość (max.{product.quantity})</span>
 
                         <div className="quantity-container">
-                            <input type="number" className="quantity-container__input"/>
+                            <input type="number" className="quantity-container__input" value={quantity} onChange={changeQuantity}/>
                             
                             <div className="quantity-container__buttons">
-                                <button className="quantity-container__add">
+                                <button className="quantity-container__add" onClick={addQuantity}>
                                     +
                                 </button>
-                                <button className="quantity-container__truncate">
+                                <button className="quantity-container__truncate" onClick={truncateQuantity}>
                                     -
                                 </button>
                             </div>
