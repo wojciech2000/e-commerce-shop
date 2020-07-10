@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { GrBasket } from 'react-icons/gr'
+import { useDispatch } from 'react-redux'
+import { add } from '../redux/cart/cartActions'
 
 function Product(props) {
 
     const id = props.match.params.id
     const { loading, products, error } = useSelector(state => state.products)
     const product = products && products.find(({_id}) => _id === id)
-
+    const dispatch = useDispatch()
 
     const [quantity, setQuantity] = useState(1)
 
@@ -35,11 +37,27 @@ function Product(props) {
         setSize(choosenDiv.textContent)
     }
 
+
+    const confirm = () => {
+
+        dispatch(add({
+            _id: product._id,
+            brand: product.brand,
+            name: product.name,
+            price: product.price,
+            size: size,
+            quantity: quantity,
+            image: product.image,
+        }))
+
+        props.history.push('/cart')
+    }
+
     return (
         <div>
             {loading ? <div>loading</div> : error ? <div>error</div> : product && 
             <div className="details">
-                <img src={document.location.origin + '/uploads/' + product.image} className="details__image" alt="zdjęcie produktu"/>
+                <img src={`${document.location.origin}/uploads/${product.image}`} className="details__image" alt="zdjęcie produktu"/>
 
                 <div className="details__info">
 
@@ -85,7 +103,7 @@ function Product(props) {
                         
                     </div>
 
-                    <div className="details__add">
+                    <div className="details__add" onClick={confirm}>
                         <GrBasket />
                         <span>Do koszyka</span>
                     </div>

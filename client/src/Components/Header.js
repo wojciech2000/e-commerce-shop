@@ -9,7 +9,7 @@ function Header() {
             <Link to="/"><h1 className="header__h1">e-comerce</h1></Link>
 
             <nav className="header__nav">
-                <a href="#koszyk"><GrBasket /> Koszyk</a>
+                <Link to="/cart"><GrBasket /> Koszyk</Link>
                 <a href="#zaloguj"><FaUserAlt /> Zaloguj</a>
             </nav>
 
