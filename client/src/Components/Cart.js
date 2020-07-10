@@ -61,6 +61,29 @@ function Cart() {
                 ))}
 
            </div>
+
+            <div className="cart__summary">
+
+                <div className="cart__numbers">
+                    <div className="cart__total-sum">
+                        Łączna suma
+
+                        <span>{(cart.reduce((acc, { price, quantity }) => acc + ( price * quantity ) , 0)).toFixed(2)}zł</span>
+                    </div>
+
+                    <div className="cart__total-quantity">
+                        Łączna ilość
+
+                        <span>{cart.reduce((acc, { quantity }) => acc + quantity , 0)}</span>
+                    </div>
+                </div>
+
+                <div className="cart__buy">
+                    Kup
+                </div>
+                
+            </div>
+
         </div>
     )
 }
