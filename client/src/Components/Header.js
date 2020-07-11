@@ -10,7 +10,7 @@ function Header() {
 
             <nav className="header__nav">
                 <Link to="/cart"><GrBasket /> Koszyk</Link>
-                <a href="#zaloguj"><FaUserAlt /> Zaloguj</a>
+                <Link to="/login"><FaUserAlt /> Zaloguj</Link>
             </nav>
 
         </header>

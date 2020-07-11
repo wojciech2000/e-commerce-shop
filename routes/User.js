@@ -11,7 +11,7 @@ router.post('/register', (req,res) => {
         if(err)
         res.status(500).json(err)
         if(user)
-        res.status(400).json('username is already taken')
+        res.json('Login jest zajęty')
         else
         {
             const newUser = new User({username, password})
@@ -19,7 +19,7 @@ router.post('/register', (req,res) => {
                 if(err)
                 res.status(500).json(err)
                 else
-                res.status(201).json('account successfully create')
+                res.status(201).json('Dodano użytkownika')
             })
         }
     })

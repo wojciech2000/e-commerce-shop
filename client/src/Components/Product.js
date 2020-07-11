@@ -10,8 +10,8 @@ function Product(props) {
     const { loading, products, error } = useSelector(state => state.products)
     const product = products && products.find(({_id}) => _id === id)
     const dispatch = useDispatch()
-
     const [quantity, setQuantity] = useState(1)
+    const [size, setSize] = useState(product && product.size[0])
 
     const incrementQuantity = () => {
         (quantity >= 1 && quantity < product.quantity) && setQuantity(prevQty => prevQty + 1)
@@ -23,9 +23,7 @@ function Product(props) {
     const changeQuantity = e => {
         (e.target.value > 0 && e.target.value <= product.quantity && e.target.value) && setQuantity(parseInt(e.target.value))
     }
-
-
-    const [size, setSize] = useState(product && product.size[0])
+   
 
     const chooseSize = e => {
         const sizeDivs = document.querySelectorAll('.sizes-container__size')
