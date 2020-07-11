@@ -421,6 +421,82 @@ h3 {
     .cart__description {
       margin-top: -5px; } }
 
+.register {
+  min-height: calc(100vh - 110px);
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column; }
+  .register__form {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column; }
+    .register__form div:not(:last-child) {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-evenly;
+      flex-direction: column; }
+      .register__form div:not(:last-child) label {
+        padding-bottom: 5px;
+        color: #636363; }
+      .register__form div:not(:last-child) input {
+        border: 1px solid black;
+        padding: 5px 8px;
+        border-radius: 7px;
+        font-size: 1.9rem;
+        transition: border-color .2s ease; }
+        .register__form div:not(:last-child) input:focus {
+          border-color: #FF9211; }
+  .register__buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column; }
+  .register__submit {
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #FF9211;
+    border-radius: 10px;
+    font-size: 2.2rem;
+    color: white; }
+  .register__login {
+    margin-top: 15px;
+    padding: 10px 25px;
+    background-color: #bbbbbb;
+    border-radius: 10px; }
+  @media (min-width: 1440px) {
+    .register__title {
+      font-size: 3rem; }
+    .register__form {
+      height: 650px; }
+      .register__form label {
+        font-size: 2.2rem; }
+    .register__submit {
+      font-size: 2.5rem; }
+    .register__login {
+      font-size: 2rem; } }
+
+.status {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 100px;
+  background-color: #FF9211;
+  font-size: 2.4rem;
+  padding: 15px;
+  color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center; }
+
 .footer {
   width: 100%;
   height: 40px;
