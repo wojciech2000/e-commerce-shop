@@ -421,41 +421,41 @@ h3 {
     .cart__description {
       margin-top: -5px; } }
 
-.register {
+.register, .login {
   min-height: calc(100vh - 110px);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column; }
-  .register__form {
+  .register__form, .login__form {
     height: 500px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column; }
-    .register__form div:not(:last-child) {
+    .register__form div:not(:last-child), .login__form div:not(:last-child) {
       display: flex;
       align-items: flex-start;
       justify-content: space-evenly;
       flex-direction: column; }
-      .register__form div:not(:last-child) label {
+      .register__form div:not(:last-child) label, .login__form div:not(:last-child) label {
         padding-bottom: 5px;
         color: #636363; }
-      .register__form div:not(:last-child) input {
+      .register__form div:not(:last-child) input, .login__form div:not(:last-child) input {
         border: 1px solid black;
         padding: 5px 8px;
         border-radius: 7px;
         font-size: 1.9rem;
         transition: border-color .2s ease; }
-        .register__form div:not(:last-child) input:focus {
+        .register__form div:not(:last-child) input:focus, .login__form div:not(:last-child) input:focus {
           border-color: #FF9211; }
-  .register__buttons {
+  .register__buttons, .login__buttons {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column; }
-  .register__submit {
+  .register__submit, .login__submit {
     cursor: pointer;
     margin-top: 15px;
     padding: 10px 25px;
@@ -463,7 +463,7 @@ h3 {
     border-radius: 10px;
     font-size: 2.2rem;
     color: white; }
-  .register__login {
+  .register__login, .login__register {
     margin-top: 15px;
     padding: 10px 25px;
     background-color: #bbbbbb;
@@ -471,13 +471,13 @@ h3 {
   @media (min-width: 1440px) {
     .register__title {
       font-size: 3rem; }
-    .register__form {
+    .register__form, .login__form {
       height: 650px; }
-      .register__form label {
+      .register__form label, .login__form label {
         font-size: 2.2rem; }
-    .register__submit {
+    .register__submit, .login__submit {
       font-size: 2.5rem; }
-    .register__login {
+    .register__login, .login__register {
       font-size: 2rem; } }
 
 .status {

@@ -10,6 +10,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    purchasedProducts: [{type: mongoose.Schema.Types.ObjectId, ref: 'purchasedProducts' }]
 })
 
 //hash password before saving to database
