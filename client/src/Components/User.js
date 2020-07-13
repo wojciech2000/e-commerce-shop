@@ -1,10 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { DataContext } from './DataContext'
 import axios from 'axios'
 
 function User(props) {
 
     const { status, setLogin } = useContext(DataContext)
+
+    useEffect(() => {
+        axios.get('/user/purchased-products')
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }, [])
 
     const logOut = () => {
         axios.get('/user/logout')

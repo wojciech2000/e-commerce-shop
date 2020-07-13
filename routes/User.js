@@ -51,16 +51,17 @@ router.get('/logout', passport.authenticate('jwt', {session: false}) ,(req,res) 
 router.post('/purchase', passport.authenticate('jwt', {session: false}) ,(req,res) => {
 
     const product = new PurchasedProducts(req.body)
+
     product.save(err => {
         if(err)
             res.status(500).json(err)
         else
-            req.user.purchasedProducts.push(product)
+            req.user.purchasedProducts.push(product._id)
             req.user.save(err => {
                 if(err)
                     res.status(500).json(err)
                 else
-                    res.json('Produkt został dodany do twojej historii zapupów')
+                    res.json(product)
             })
     })
 })

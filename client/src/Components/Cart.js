@@ -1,16 +1,41 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { remove } from '../redux/cart/cartActions'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { DataContext } from './DataContext'
 
-function Cart() {
+function Cart(props) {
 
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
+    const { login, status } = useContext(DataContext)
+
     const removeProduct = (id) => {
         dispatch(remove(id))
+    }
+
+    const buy = () => {
+        
+        if(cart.length === 0)
+        {
+            status('Nie wybrano żadnych produktów')
+        }
+        else if(login)
+        {
+            axios.post('/user/purchase', {products: cart} )
+            .then(res => status('produkt został dodany do historii zakupów'))
+            .catch(err => console.log(err))
+        }
+        else
+        {
+            props.history.push('/login')
+            status('Aby kupować produkty zaloguj się')
+        }
+
+
     }
 
     return (
@@ -78,7 +103,7 @@ function Cart() {
                     </div>
                 </div>
 
-                <div className="cart__buy">
+                <div className="cart__buy" onClick={buy}>
                     Kup
                 </div>
                 
