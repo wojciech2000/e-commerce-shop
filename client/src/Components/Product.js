@@ -47,7 +47,7 @@ function Product(props) {
             quantity: quantity,
             image: product.image,
         }))
-
+        
         props.history.push('/cart')
     }
 

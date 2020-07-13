@@ -3,29 +3,29 @@ import { Link } from 'react-router-dom'
 import { DataContext } from './DataContext'
 import axios from 'axios'
 
-function Login() {
+function Login(props) {
 
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
 
-    const { status } = useContext(DataContext)
+    const { status, setLogin } = useContext(DataContext)
 
     const login = e => {
         e.preventDefault()
        
         if(!username || !password)
         {
-            return status('uzupełnij wszystkie pola')
+            return status('Uzupełnij wszystkie pola')
         }
         else 
         {
             axios.post('user/login', { username, password })
             .then(res => {
                 status(res.data)
-                setUserName('')
-                setPassword('')
+                setLogin(true)
+                props.history.push('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => err.response.status === 401 && status('Błędne hasło lub login'))
         }
 
     }

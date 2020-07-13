@@ -35,7 +35,7 @@ passport.use(new LocalStrategy((username, password, done) => {
             return done(err, true)
         // user doesn't exist
         if(!user)
-            return done(null,false)
+            return done(null, false)
         //found user
         user.comparePassword(password, done)
     })

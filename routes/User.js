@@ -12,7 +12,7 @@ router.post('/register', (req,res) => {
         if(err)
         res.status(500).json(err)
         if(user)
-        res.json('Login jest zajęty')
+            res.json('Login jest zajęty')
         else
         {
             const newUser = new User({username, password})
@@ -34,17 +34,18 @@ const signToken = userId => (
 )
 
 router.post('/login', passport.authenticate('local', {session: false}) ,(req,res) => {
-    if(req.isAuthenticated()){
+    if(req.isAuthenticated())
+    {
         const { _id } = req.user
         const token = signToken(_id)
-        res.cookie('access_token', token, { httpOnly: true, sameSite: true })
-        res.json('user has been logged in')
+        res.cookie('access_token', token, { sameSite: true })
+        res.json('Użytkownik został zalogowany')
     }
 })
 
 router.get('/logout', passport.authenticate('jwt', {session: false}) ,(req,res) => {
     res.clearCookie('access_token')
-    res.json('user has been logged out')
+    res.json('Użytkownik został wylogowany')
 })
 
 router.post('/purchase', passport.authenticate('jwt', {session: false}) ,(req,res) => {
@@ -59,7 +60,7 @@ router.post('/purchase', passport.authenticate('jwt', {session: false}) ,(req,re
                 if(err)
                     res.status(500).json(err)
                 else
-                    res.json('produkt został dodany do twojej historii zapupów')
+                    res.json('Produkt został dodany do twojej historii zapupów')
             })
     })
 })

@@ -57,10 +57,10 @@ h3 {
     .header__nav svg {
       font-size: 2rem; }
     .header__nav a {
-      width: 9rem;
+      width: 90px;
       display: flex;
-      justify-content: space-between;
-      padding-left: .4rem; }
+      justify-content: space-around;
+      padding-left: 4px; }
   @media (max-width: 600px) {
     .header {
       padding: 0 5%; }
@@ -71,7 +71,7 @@ h3 {
         .header__nav svg {
           font-size: 1.6rem; }
         .header__nav a {
-          width: 7.5rem;
+          width: 75px;
           font-size: 1.5rem; } }
 
 .products {
@@ -80,7 +80,7 @@ h3 {
   .products__search {
     border-radius: 10px;
     border: 1px solid black;
-    padding: 1rem;
+    padding: 10px;
     display: block;
     margin: 0 auto 60px;
     transition: border-color .2s ease; }
@@ -97,10 +97,10 @@ h3 {
     .products__products-list .product {
       display: flex;
       flex-direction: column;
-      margin: 2.5rem 2rem; }
+      margin: 25px 2px; }
       .products__products-list .product__image {
-        width: 16rem;
-        height: 20rem;
+        width: 160px;
+        height: 200px;
         object-fit: cover;
         border-radius: 10px;
         border: 1px solid #2C2C2C; }

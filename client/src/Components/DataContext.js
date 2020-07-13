@@ -1,4 +1,4 @@
-import React, { createContext } from 'react'
+import React, { createContext, useState } from 'react'
 import gsap from 'gsap'
 
 export const DataContext = createContext()
@@ -24,8 +24,10 @@ export const DataProvider = ({children}) => {
 
     }
 
+    const [login, setLogin] = useState(false)
+
     return (
-        <DataContext.Provider value={{ status }}>
+        <DataContext.Provider value={{ status, login, setLogin }}>
             {children}
         </DataContext.Provider>
     )

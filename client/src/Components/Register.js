@@ -17,20 +17,24 @@ function Register() {
 
         if(!username || !password || !password2)
         {
-            return status('uzupełnij wszystkie pola')
+            return status('Uzupełnij wszystkie pola')
         }
         else if(password !== password2)
         {
-            return status('hasła muszą być takie same')
+            return status('Hasła muszą być takie same')
         }
         else 
         {
             axios.post('user/register', { username, password })
             .then(res => {
                 status(res.data)
-                setUserName('')
-                setPassword('')
-                setPassword2('')
+
+                if(res.data === 'Dodano użytkownika')
+                {
+                    setUserName('')
+                    setPassword('')
+                    setPassword2('')
+                }
             })
             .catch(err => console.log(err))
         }
