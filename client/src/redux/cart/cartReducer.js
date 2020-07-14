@@ -1,4 +1,4 @@
-import { ADD_PRODUCT_CART, REMOVE_PRODUCT_CART } from './cartType'
+import { ADD_PRODUCT_CART, REMOVE_PRODUCT_CART, CLEAR_PRODUCT_CART } from './cartType'
 
 const datas = []
 
@@ -6,7 +6,6 @@ const cartReducer = (state = datas, action) => {
 
     switch (action.type) {
         case ADD_PRODUCT_CART:
-
             const addProduct = action.payload
             let checkIfExists = state.find(cart => cart.name === addProduct.name)
 
@@ -22,10 +21,13 @@ const cartReducer = (state = datas, action) => {
             }
             
         case REMOVE_PRODUCT_CART:
-
             const removeRroduct = action.payload
 
             return state.filter(cart => cart._id !== removeRroduct)
+
+        case CLEAR_PRODUCT_CART:
+
+            return []
 
         default:
             return state;

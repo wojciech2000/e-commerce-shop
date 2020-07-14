@@ -1,8 +1,7 @@
 html {
   font-size: 62.5%;
   font-family: "Metrophobic", sans-serif;
-  width: 100vw;
-  overflow-x: hidden; }
+  width: 100%; }
 
 * {
   margin: 0;
@@ -29,12 +28,6 @@ input::-webkit-inner-spin-button {
 
 h1 {
   font-size: 3rem; }
-
-h2 {
-  font-size: 2.5rem; }
-
-h3 {
-  font-size: 2rem; }
 
 .header {
   width: 100%;
@@ -76,7 +69,7 @@ h3 {
 
 .products {
   min-height: calc(100vh - 110px);
-  padding: 30px 0; }
+  padding: 40px 0; }
   .products__search {
     border-radius: 10px;
     border: 1px solid black;
@@ -479,6 +472,84 @@ h3 {
       font-size: 2.5rem; }
     .register__login, .login__register {
       font-size: 2rem; } }
+
+.user {
+  min-height: calc(100vh - 110px);
+  padding: 40px 0;
+  width: 80%;
+  margin: 0 auto; }
+  .user__panel {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 30px; }
+  .user__title {
+    font-size: 3.5rem; }
+  .user__logout {
+    padding: 5px 15px;
+    background-color: #D60E0E;
+    border-radius: 8px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer; }
+  .user__history {
+    display: flex;
+    flex-direction: column-reverse; }
+  .user .shopping {
+    padding: 50px 0;
+    border-bottom: 1px solid #FF9211; }
+    .user .shopping__header {
+      height: 100px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      flex-direction: column;
+      padding-bottom: 30px; }
+    .user .shopping__date {
+      color: #505050;
+      padding-bottom: 15px; }
+    .user .shopping__price {
+      font-size: 2rem; }
+    .user .shopping__quantity {
+      font-size: 2rem; }
+    .user .shopping__products {
+      display: flex;
+      overflow-x: auto;
+      width: 100%; }
+    .user .shopping__product:not(:last-child) {
+      border-right: 1px solid #FF9211; }
+    .user .shopping__product {
+      display: flex;
+      justify-content: space-around;
+      padding: 25px 60px;
+      min-width: fit-content; }
+    .user .shopping__image {
+      width: 108px;
+      height: 140px;
+      border: 1px solid #2C2C2C;
+      border-radius: 10px;
+      object-fit: cover; }
+    .user .shopping__info {
+      padding-left: 30px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-direction: column;
+      white-space: nowrap; }
+    .user .shopping__price, .user .shopping__brand, .user .shopping__name, .user .shopping__size, .user .shopping__quantity {
+      color: #505050; }
+      .user .shopping__price span, .user .shopping__brand span, .user .shopping__name span, .user .shopping__size span, .user .shopping__quantity span {
+        color: black; }
+  @media (max-width: 600px) {
+    .user {
+      width: 90%; }
+    .user__panel {
+      justify-content: space-between; }
+    .user__title {
+      font-size: 2.6rem; }
+    .user__logout {
+      font-size: 1.5rem; } }
 
 .status {
   position: absolute;

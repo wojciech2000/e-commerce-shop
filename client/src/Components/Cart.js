@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { remove } from '../redux/cart/cartActions'
+import { remove, clear } from '../redux/cart/cartActions'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { DataContext } from './DataContext'
@@ -12,6 +12,9 @@ function Cart(props) {
     const dispatch = useDispatch()
 
     const { login, status } = useContext(DataContext)
+
+    const totalPrice = cart.reduce((acc, { price, quantity }) => acc + ( price * quantity ) , 0).toFixed(2)
+    const totalQuantity = cart.reduce((acc, { quantity }) => acc + quantity , 0)
 
     const removeProduct = (id) => {
         dispatch(remove(id))
@@ -25,8 +28,11 @@ function Cart(props) {
         }
         else if(login)
         {
-            axios.post('/user/purchase', {products: cart} )
-            .then(res => status('produkt został dodany do historii zakupów'))
+            axios.post('/user/purchase', {totalPrice, totalQuantity, products: cart} )
+            .then(res => {
+                dispatch(clear())
+                status('produkt został dodany do historii zakupów')
+            } )
             .catch(err => console.log(err))
         }
         else
@@ -93,13 +99,13 @@ function Cart(props) {
                     <div className="cart__total-sum">
                         Łączna suma
 
-                        <span>{(cart.reduce((acc, { price, quantity }) => acc + ( price * quantity ) , 0)).toFixed(2)}zł</span>
+                        <span>{totalPrice}zł</span>
                     </div>
 
                     <div className="cart__total-quantity">
                         Łączna ilość
 
-                        <span>{cart.reduce((acc, { quantity }) => acc + quantity , 0)}</span>
+                        <span>{totalQuantity}</span>
                     </div>
                 </div>
 

@@ -1,0 +1,144 @@
+.user
+{
+    min-height: $display-height;
+    padding: 40px 0;
+    width: 80%;
+    margin: 0 auto;
+
+    &__panel
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding-bottom: 30px;
+    }
+
+    &__title
+    {
+        font-size: 3.5rem;
+    }
+
+    &__logout
+    {
+        padding: 5px 15px;
+        background-color: #D60E0E;
+        border-radius: 8px;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    &__history
+    {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    .shopping
+    {
+        padding: 50px 0;
+        border-bottom: 1px solid $main-color;
+
+        &__header
+        {
+            height: 100px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-around;
+            flex-direction: column;
+            padding-bottom: 30px;
+        }
+
+        &__date
+        {
+            color: #505050;
+            padding-bottom: 15px;
+        }
+
+        &__price
+        {
+            font-size: 2rem;
+        }
+
+        &__quantity
+        {
+            font-size: 2rem;
+        }
+        
+        &__products
+        {
+            display: flex;
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        &__product:not(:last-child)
+        {
+            border-right: 1px solid $main-color;
+        }
+
+        &__product
+        {
+            display: flex;
+            justify-content: space-around;
+            padding: 25px 60px;
+            min-width: fit-content;
+        }
+
+        &__image
+        {
+            width: 108px;
+            height: 140px;
+            border: 1px solid #2C2C2C;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        &__info
+        {
+            padding-left: 30px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-direction: column;
+            white-space: nowrap;
+        }
+
+        &__price, &__brand,&__name, &__size, &__quantity
+        {
+            color: #505050;
+
+            span
+            {
+                color: black;
+            }
+
+        }
+    }
+
+    @media (max-width: 600px)
+    {
+        &
+        {
+            width: 90%;
+        }
+
+        &__panel
+        {
+            justify-content: space-between;
+        }
+
+        &__title
+        {
+            font-size: 2.6rem;
+        }
+
+        &__logout
+        {
+            font-size: 1.5rem;
+        }
+
+    }
+
+}

@@ -8,8 +8,7 @@ html
 {
     font-size: 62.5%;
     font-family: $main-font;
-    width: 100vw;
-    overflow-x: hidden;
+    width: 100%;
 }
 
 *
@@ -47,14 +46,4 @@ input::-webkit-inner-spin-button {
 h1
 {
     font-size: 3rem;
-}
-
-h2
-{
-    font-size: 2.5rem;
-}
-
-h3
-{
-    font-size: 2rem;
 }
