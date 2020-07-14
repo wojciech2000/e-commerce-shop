@@ -25,9 +25,10 @@ export const DataProvider = ({children}) => {
     }
 
     const [login, setLogin] = useState(false)
+    const [username, setUsername] = useState('')
 
     return (
-        <DataContext.Provider value={{ status, login, setLogin }}>
+        <DataContext.Provider value={{ status, login, setLogin, username, setUsername }}>
             {children}
         </DataContext.Provider>
     )

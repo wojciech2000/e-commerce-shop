@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { DataContext } from './DataContext'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 function Login(props) {
@@ -8,9 +9,9 @@ function Login(props) {
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
 
-    const { status, setLogin } = useContext(DataContext)
+    const { status, setLogin,login,  setUsername } = useContext(DataContext)
 
-    const login = e => {
+    const logIn = e => {
         e.preventDefault()
        
         if(!username || !password)
@@ -23,6 +24,7 @@ function Login(props) {
             .then(res => {
                 status(res.data)
                 setLogin(true)
+                setUsername(username)
                 props.history.push('/')
             })
             .catch(err => err.response.status === 401 && status('Błędne hasło lub login'))
@@ -33,7 +35,9 @@ function Login(props) {
     return (
         <div className="login">
             
-            <form onSubmit={login} className="login__form">
+            {login && <Redirect to='/' />}
+
+            <form onSubmit={logIn} className="login__form">
 
                 <h2 className="login__title">Zaloguj się</h2>
 

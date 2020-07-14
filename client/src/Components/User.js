@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { DataContext } from './DataContext'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 function User(props) {
 
-    const { status, setLogin } = useContext(DataContext)
+    const { status, setLogin, login } = useContext(DataContext)
     const [purchasedProducts, setPurchasedProducts] = useState()
 
 
@@ -25,7 +26,10 @@ function User(props) {
     }
 
     return (
+
         <div className="user">
+
+            {!login && <Redirect to='/' />}
 
             <div className="user__panel">
                 

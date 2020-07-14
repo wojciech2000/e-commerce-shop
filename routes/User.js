@@ -79,4 +79,16 @@ router.get('/purchased-products', passport.authenticate('jwt', {session: false})
     
 })
 
+router.get('/username', passport.authenticate('jwt', {session: false}) ,(req,res) => {
+
+    User.findById({ _id: req.user._id }, (err, data) => {
+        if(err)
+            res.status(500).json(err)
+        else
+            res.json(data.username)
+
+    })
+    
+})
+
 module.exports = router

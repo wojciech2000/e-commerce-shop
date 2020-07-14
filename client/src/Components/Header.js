@@ -6,7 +6,7 @@ import { DataContext } from './DataContext'
 
 function Header() {
 
-    const { login } = useContext(DataContext)
+    const { login, username } = useContext(DataContext)
 
     return (
         <header className="header">
@@ -14,7 +14,16 @@ function Header() {
 
             <nav className="header__nav">
                 <Link to="/cart"><GrBasket /> Koszyk</Link>
-                {login ? <Link to="/user"><FaUserAlt /> Konto</Link> : <Link to="/login"><FaUserAlt /> Zaloguj</Link>}
+                
+                {(login && username==='admin') ? 
+
+                <Link to="/admin"><FaUserAlt /> {username}</Link> : 
+
+                login ? 
+
+                <Link to="/user"><FaUserAlt /> {username}</Link> : 
+
+                <Link to="/login"><FaUserAlt /> Zaloguj</Link>}
             </nav>
 
         </header>

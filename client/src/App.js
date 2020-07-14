@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getAllData } from './redux/products/productsOperations'
 import { DataContext } from './Components/DataContext'
 import cookie from 'js-cookie'
+import axios from 'axios'
 
 import Header from './Components/Header'
 import Products from './Components/Products'
@@ -13,16 +14,24 @@ import Cart from './Components/Cart'
 import Login from './Components/Login'
 import Register from './Components/Register'
 import User from './Components/User'
+import Admin from './Components/Admin'
 import Footer from './Components/Footer'
-
 
 function App() {
 
-  const { setLogin } = useContext(DataContext)
+  const { setLogin, setUsername } = useContext(DataContext)
 
   const dispatch = useDispatch()
   useEffect(() => {
+
+    axios.get('user/username')
+    .then(res => setUsername(res.data))
+    .catch(err => console.log(err.response.status))
+
     if(cookie.get('access_token'))
+
+
+
       setLogin(true) 
       
     dispatch(getAllData()) 
@@ -40,6 +49,7 @@ function App() {
         <Route path="/login" exact component={Login}/>
         <Route path="/register" exact component={Register}/>
         <Route path="/user" exact component={User}/>
+        <Route path="/admin" exact component={Admin}/>
 
         <Footer />
 

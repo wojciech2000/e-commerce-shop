@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { DataContext } from './DataContext'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 function Register() {
@@ -9,7 +10,7 @@ function Register() {
     const [password, setPassword] = useState('')
     const [password2, setPassword2] = useState('')
 
-    const { status } = useContext(DataContext)
+    const { status, login } = useContext(DataContext)
 
     const register = e => {
         e.preventDefault()
@@ -44,6 +45,8 @@ function Register() {
     return (
         <div className="register">
             
+            {login && <Redirect to='/' />}
+
             <form onSubmit={register} className="register__form">
 
                 <h2 className="register__title">Zarejestruj się</h2>
