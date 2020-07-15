@@ -1,8 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { getAllData } from './redux/products/productsOperations'
 import { DataContext } from './Components/DataContext'
 import cookie from 'js-cookie'
 import axios from 'axios'
@@ -15,13 +13,13 @@ import Login from './Components/Login'
 import Register from './Components/Register'
 import User from './Components/User'
 import Admin from './Components/Admin'
+import AddProduct from './Components/AddProduct'
 import Footer from './Components/Footer'
 
 function App() {
 
   const { setLogin, setUsername } = useContext(DataContext)
 
-  const dispatch = useDispatch()
   useEffect(() => {
 
     axios.get('user/username')
@@ -29,12 +27,7 @@ function App() {
     .catch(err => console.log(err.response.status))
 
     if(cookie.get('access_token'))
-
-
-
       setLogin(true) 
-      
-    dispatch(getAllData()) 
   }, [])
 
 
@@ -50,6 +43,7 @@ function App() {
         <Route path="/register" exact component={Register}/>
         <Route path="/user" exact component={User}/>
         <Route path="/admin" exact component={Admin}/>
+        <Route path="/add-product" exact component={AddProduct}/>
 
         <Footer />
 

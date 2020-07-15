@@ -15,12 +15,7 @@ function Register() {
     const register = e => {
         e.preventDefault()
        
-
-        if(!username || !password || !password2)
-        {
-            return status('Uzupełnij wszystkie pola')
-        }
-        else if(password !== password2)
+        if(password !== password2)
         {
             return status('Hasła muszą być takie same')
         }
@@ -53,17 +48,17 @@ function Register() {
 
                 <div>
                     <label htmlFor="username">Login</label>
-                    <input type="text" id="username" value={username} onChange={e => setUserName(e.target.value)}/>
+                    <input type="text" id="username" value={username} onChange={e => setUserName(e.target.value)} required/>
                 </div>
 
                 <div>
                     <label htmlFor="password">Hasło</label>
-                    <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                 </div>
 
                 <div>
                     <label htmlFor="password2">Powtórz hasło</label>
-                    <input type="password" id="password2" value={password2} onChange={e => setPassword2(e.target.value)}/>
+                    <input type="password" id="password2" value={password2} onChange={e => setPassword2(e.target.value)} required/>
                 </div>
 
                 <div className="register__buttons">

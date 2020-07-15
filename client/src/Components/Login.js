@@ -14,21 +14,14 @@ function Login(props) {
     const logIn = e => {
         e.preventDefault()
        
-        if(!username || !password)
-        {
-            return status('Uzupełnij wszystkie pola')
-        }
-        else 
-        {
-            axios.post('user/login', { username, password })
-            .then(res => {
-                status(res.data)
-                setLogin(true)
-                setUsername(username)
-                props.history.push('/')
-            })
-            .catch(err => err.response.status === 401 && status('Błędne hasło lub login'))
-        }
+        axios.post('user/login', { username, password })
+        .then(res => {
+            status(res.data)
+            setLogin(true)
+            setUsername(username)
+            props.history.push('/')
+        })
+        .catch(err => err.response.status === 401 && status('Błędne hasło lub login'))
 
     }
 
@@ -43,12 +36,12 @@ function Login(props) {
 
                 <div>
                     <label htmlFor="username">Login</label>
-                    <input type="text" id="username" value={username} onChange={e => setUserName(e.target.value)}/>
+                    <input type="text" id="username" value={username} onChange={e => setUserName(e.target.value)} required/>
                 </div>
 
                 <div>
                     <label htmlFor="password">Hasło</label>
-                    <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} required/>
                 </div>
 
                 <div className="login__buttons">

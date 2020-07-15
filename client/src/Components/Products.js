@@ -1,11 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getAllData } from '../redux/products/productsOperations'
 import { useSelector } from 'react-redux'
 
 function Products() {
 
     const [search, setSearch] = useState("")
     const productState = useSelector(state => state.products)
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+      dispatch(getAllData()) 
+    }, [])
 
     const { loading, products, error } = productState
 

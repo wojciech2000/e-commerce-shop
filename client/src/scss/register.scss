@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    padding: 40px 0;
 
     &__form
     {
@@ -21,7 +22,7 @@
             justify-content: space-evenly;
             flex-direction: column;
 
-            label
+            label, span
             {
                 padding-bottom: 5px;
                 color: #636363;

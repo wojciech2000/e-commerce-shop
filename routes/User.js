@@ -10,7 +10,7 @@ router.post('/register', (req,res) => {
 
     User.findOne({username}, (err,user) => {
         if(err)
-        res.status(500).json(err)
+            res.status(500).json(err)
         if(user)
             res.json('Login jest zajęty')
         else

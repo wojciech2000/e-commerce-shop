@@ -26,20 +26,35 @@ const upload = multer({storage, fileFilter})
 
 router.post('/add', passport.authenticate('jwt', {session: false}), upload.single('image'), (req,res) => {
 
-    const product = new Product({
-        name: req.body.name,
-        price: req.body.price,
-        size: req.body.size.split(','),
-        brand: req.body.brand,
-        quantity: req.body.quantity,
-        image: req.file.filename
-    })
-    product.save(err => {
+    Product.find({name: req.body.name}, (err, product) => {
+
         if(err)
             res.status(500).json(err)
+
+        if(product.length == 0)
+        {
+            const product = new Product({
+                name: req.body.name,
+                price: req.body.price,
+                size: req.body.size.split(',') ,
+                brand: req.body.brand,
+                quantity: req.body.quantity,
+                image: req.file.filename
+            })
+            product.save(err => {
+                if(err)
+                    res.status(500).json(err)
+                else
+                    res.status(201).json('Produkt został dodany')
+            })
+        }
         else
-            res.status(201).json('added product')
+        {
+            res.json('Podana nazwa produku jest zajęta')
+        }
+
     })
+
 })
 
 router.delete('/delete/:id/:filename', passport.authenticate('jwt', {session: false}), (req,res) => {
