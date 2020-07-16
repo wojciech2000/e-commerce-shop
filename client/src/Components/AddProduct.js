@@ -1,16 +1,20 @@
 import React, { useContext, useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import { DataContext } from './DataContext'
+import { useDispatch } from 'react-redux'
+import { getAllData } from '../redux/products/productsOperations'
 import axios from 'axios'
 
 function AddProduct() {
 
     const { username, status } = useContext(DataContext)
 
-    const AvailableSizes = ['XS', 'S', 'M', 'L','XL']
-
     const [image, setImage] = useState('')
     const [sizes, setSize] = useState([])
+
+    const dispatch = useDispatch()
+
+    const AvailableSizes = ['XS', 'S', 'M', 'L','XL']
 
     const onChangeImage = e => {
         const file = e.target.files[0]
@@ -36,7 +40,7 @@ function AddProduct() {
         }
     }
 
-    const onSubmit = e => {
+    const addData = e => {
 
         e.preventDefault()
         
@@ -54,7 +58,10 @@ function AddProduct() {
         if(sizes.length > 0)
         {
             axios.post('product/add', formData)
-            .then(res => status(res.data))
+            .then(res => {
+                status(res.data)
+                dispatch(getAllData()) 
+            } )
             .catch(err => console.log(err))
         }
         else
@@ -67,11 +74,11 @@ function AddProduct() {
     return (
         <div className="add-product">
 
-            {/* {username !== 'admin' && <Redirect to='/' />} */}
+            {username !== 'admin' && <Redirect to='/' />}
 
             <h2>Dodaj produkt</h2>
 
-            <form className="add-product__form" onSubmit={onSubmit}>
+            <form className="add-product__form" onSubmit={addData}>
 
                 <div>
                     <label htmlFor="name">Nazwa</label>

@@ -2,6 +2,8 @@ import React, { useEffect, useContext } from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { DataContext } from './Components/DataContext'
+import { useDispatch } from 'react-redux'
+import { getAllData } from './redux/products/productsOperations'
 import cookie from 'js-cookie'
 import axios from 'axios'
 
@@ -20,7 +22,10 @@ function App() {
 
   const { setLogin, setUsername } = useContext(DataContext)
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
+    dispatch(getAllData()) 
 
     axios.get('user/username')
     .then(res => setUsername(res.data))
