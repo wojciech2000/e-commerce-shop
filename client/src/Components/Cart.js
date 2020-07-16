@@ -11,7 +11,7 @@ function Cart(props) {
     const cart = useSelector(state => state.cart)
     const dispatch = useDispatch()
 
-    const { login, status } = useContext(DataContext)
+    const { login, status, username } = useContext(DataContext)
 
     const totalPrice = cart.reduce((acc, { price, quantity }) => acc + ( price * quantity ) , 0).toFixed(2)
     const totalQuantity = cart.reduce((acc, { quantity }) => acc + quantity , 0)
@@ -26,12 +26,16 @@ function Cart(props) {
         {
             status('Nie wybrano żadnych produktów')
         }
+        else if(login && username === 'admin')
+        {
+            status('Jako admin nie możesz kupować')
+        }
         else if(login)
         {
             axios.post('/user/purchase', {totalPrice, totalQuantity, products: cart} )
             .then(res => {
                 dispatch(clear())
-                status('produkt został dodany do historii zakupów')
+                status('Produkt został dodany do historii zakupów')
             } )
             .catch(err => console.log(err))
         }

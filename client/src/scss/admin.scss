@@ -1,0 +1,120 @@
+.admin
+{
+    min-height: $display-height;
+    padding: 40px 0;
+    width: 80%;
+    margin: 0 auto;
+
+    &__panel
+    {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__buttons
+    {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__add-product
+    {
+        @extend .user__logout;
+        background-color: #0ea30e;
+        margin-bottom: 10px;
+    }
+
+    &__logout
+    {
+        @extend .user__logout;
+    }
+
+    &__products-list
+    {
+        margin-top: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__product
+    {
+        margin: 30px;
+    }
+
+    &__description
+    {
+        display: flex;
+    }
+
+    &__info
+    {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        padding-left: 20px;
+    }
+
+    &__price, &__brand,&__name, &__size, &__quantity
+    {
+        color: #505050;
+
+        span
+        {
+            color: black;
+        }
+    }
+
+    &__product-buttons
+    {
+        width: 80%;
+        margin: 20px auto;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__product-change
+    {
+        @extend .user__logout;
+        background-color: $main-color;
+        font-size: 1.6rem;
+    }
+
+    &__product-delete
+    {
+        @extend .user__logout;
+        font-size: 1.6rem;
+    }
+
+    @media (max-width: 910px)
+    {
+        &
+        {
+            width: 100%;
+        }
+
+        &__panel
+        {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+    }
+
+    @media (max-width: 500px)
+    {
+        &__panel
+        {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        &__add-product, &__logout
+        {
+            font-size: 1.3rem
+        }
+    }
+
+}

@@ -487,7 +487,7 @@ h1 {
     padding-bottom: 30px; }
   .user__title {
     font-size: 3.5rem; }
-  .user__logout {
+  .user__logout, .admin__add-product, .admin__logout, .admin__product-change, .admin__product-delete {
     padding: 5px 15px;
     background-color: #D60E0E;
     border-radius: 8px;
@@ -549,8 +549,65 @@ h1 {
       justify-content: space-between; }
     .user__title {
       font-size: 2.6rem; }
-    .user__logout {
+    .user__logout, .admin__add-product, .admin__logout, .admin__product-change, .admin__product-delete {
       font-size: 1.5rem; } }
+
+.admin {
+  min-height: calc(100vh - 110px);
+  padding: 40px 0;
+  width: 80%;
+  margin: 0 auto; }
+  .admin__panel {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .admin__buttons {
+    display: flex;
+    flex-direction: column; }
+  .admin__add-product {
+    background-color: #0ea30e;
+    margin-bottom: 10px; }
+  .admin__products-list {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; }
+  .admin__product {
+    margin: 30px; }
+  .admin__description {
+    display: flex; }
+  .admin__info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 20px; }
+  .admin__price, .admin__brand, .admin__name, .admin__size, .admin__quantity {
+    color: #505050; }
+    .admin__price span, .admin__brand span, .admin__name span, .admin__size span, .admin__quantity span {
+      color: black; }
+  .admin__product-buttons {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between; }
+  .admin__product-change {
+    background-color: #FF9211;
+    font-size: 1.6rem; }
+  .admin__product-delete {
+    font-size: 1.6rem; }
+  @media (max-width: 910px) {
+    .admin {
+      width: 100%; }
+    .admin__panel {
+      width: 80%;
+      margin: 0 auto; } }
+  @media (max-width: 500px) {
+    .admin__panel {
+      width: 90%;
+      margin: 0 auto; }
+    .admin__add-product, .admin__logout {
+      font-size: 1.3rem; } }
 
 .add-product__form {
   height: 700px; }
@@ -597,7 +654,8 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center; }
+  text-align: center;
+  border: 1px solid black; }
 
 .footer {
   width: 100%;
