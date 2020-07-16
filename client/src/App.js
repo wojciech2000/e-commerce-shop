@@ -16,6 +16,7 @@ import Register from './Components/Register'
 import User from './Components/User'
 import Admin from './Components/Admin'
 import AddProduct from './Components/AddProduct'
+import Update from './Components/Update'
 import Footer from './Components/Footer'
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
   useEffect(() => {
     dispatch(getAllData()) 
 
-    axios.get('user/username')
+    axios.get('/user/username')
     .then(res => setUsername(res.data))
     .catch(err => console.log(err.response.status))
 
@@ -49,6 +50,7 @@ function App() {
         <Route path="/user" exact component={User}/>
         <Route path="/admin" exact component={Admin}/>
         <Route path="/add-product" exact component={AddProduct}/>
+        <Route path="/update/:id" exact component={Update}/>
 
         <Footer />
 

@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 import { getAllData } from '../redux/products/productsOperations'
 import axios from 'axios'
 
-function AddProduct() {
+function AddProduct(props) {
 
     const { username, status } = useContext(DataContext)
 
@@ -61,6 +61,7 @@ function AddProduct() {
             .then(res => {
                 status(res.data)
                 dispatch(getAllData()) 
+                props.history.push('/admin')
             } )
             .catch(err => console.log(err))
         }

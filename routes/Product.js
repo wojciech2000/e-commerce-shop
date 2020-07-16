@@ -63,23 +63,47 @@ router.delete('/delete/:id/:filename', passport.authenticate('jwt', {session: fa
         if(err)
             res.status(500).json(err)
         else
-            req.params.filename != "undefined" && fs.unlinkSync(`uploads/${req.params.filename}`)
+        {
+            fs.unlinkSync(`uploads/${req.params.filename}`)
             res.status(201).json('removed')
+        }
+
     })
 })
 
 router.patch('/update/:id', passport.authenticate('jwt', {session: false}), upload.single('image'), (req,res) => {
 
-    const { name, price, size, brand, quantity } = req.body
+    const { name, price, brand, quantity } = req.body
 
-    Product.updateOne({_id: req.params.id},
-        {$set: { name, price, size, brand, quantity, image: req.file.filename }},
-        err => {
-        if(err)
-            res.status(500).json(err)
+    Product.findById({_id: req.params.id}, (err, product) => {
+        if(req.file)
+        {
+            //if user update file
+            Product.updateOne({_id: product._id},
+            {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: req.file.filename }},
+            err => {
+            if(err)
+                res.status(500).json(err)
+            else
+            {
+                res.status(201).json('Zaktualizowano')
+                fs.unlinkSync(`uploads/${product.image}`)
+            }
+            })
+        }
         else
-            res.status(201).json('updated')
-    })
+        {
+            //if user don't update file
+            Product.updateOne({_id: product._id},
+            {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: product.image }},
+            err => {
+            if(err)
+                res.status(500).json(err)
+            else
+                res.status(201).json('Zaktualizowano')
+            })
+        }
+    })    
 })
 
 router.get('/datas', (req,res) => {

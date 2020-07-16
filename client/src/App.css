@@ -414,34 +414,34 @@ h1 {
     .cart__description {
       margin-top: -5px; } }
 
-.register, .login, .add-product {
+.register, .login, .add-product, .update {
   min-height: calc(100vh - 110px);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
   padding: 40px 0; }
-  .register__form, .login__form, .add-product__form {
+  .register__form, .login__form, .add-product__form, .update__form {
     height: 500px;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column; }
-    .register__form div:not(:last-child), .login__form div:not(:last-child), .add-product__form div:not(:last-child) {
+    .register__form div:not(:last-child), .login__form div:not(:last-child), .add-product__form div:not(:last-child), .update__form div:not(:last-child) {
       display: flex;
       align-items: flex-start;
       justify-content: space-evenly;
       flex-direction: column; }
-      .register__form div:not(:last-child) label, .login__form div:not(:last-child) label, .add-product__form div:not(:last-child) label, .register__form div:not(:last-child) span, .login__form div:not(:last-child) span, .add-product__form div:not(:last-child) span {
+      .register__form div:not(:last-child) label, .login__form div:not(:last-child) label, .add-product__form div:not(:last-child) label, .update__form div:not(:last-child) label, .register__form div:not(:last-child) span, .login__form div:not(:last-child) span, .add-product__form div:not(:last-child) span, .update__form div:not(:last-child) span {
         padding-bottom: 5px;
         color: #636363; }
-      .register__form div:not(:last-child) input, .login__form div:not(:last-child) input, .add-product__form div:not(:last-child) input {
+      .register__form div:not(:last-child) input, .login__form div:not(:last-child) input, .add-product__form div:not(:last-child) input, .update__form div:not(:last-child) input {
         border: 1px solid black;
         padding: 5px 8px;
         border-radius: 7px;
         font-size: 1.9rem;
         transition: border-color .2s ease; }
-        .register__form div:not(:last-child) input:focus, .login__form div:not(:last-child) input:focus, .add-product__form div:not(:last-child) input:focus {
+        .register__form div:not(:last-child) input:focus, .login__form div:not(:last-child) input:focus, .add-product__form div:not(:last-child) input:focus, .update__form div:not(:last-child) input:focus {
           border-color: #FF9211; }
   .register__buttons, .login__buttons {
     width: 100%;
@@ -449,7 +449,7 @@ h1 {
     align-items: center;
     justify-content: space-between;
     flex-direction: column; }
-  .register__submit, .login__submit, .add-product__submit {
+  .register__submit, .login__submit, .add-product__submit, .update__submit {
     cursor: pointer;
     margin-top: 15px;
     padding: 10px 25px;
@@ -465,11 +465,11 @@ h1 {
   @media (min-width: 1440px) {
     .register__title {
       font-size: 3rem; }
-    .register__form, .login__form, .add-product__form {
+    .register__form, .login__form, .add-product__form, .update__form {
       height: 650px; }
-      .register__form label, .login__form label, .add-product__form label {
+      .register__form label, .login__form label, .add-product__form label, .update__form label {
         font-size: 2.2rem; }
-    .register__submit, .login__submit, .add-product__submit {
+    .register__submit, .login__submit, .add-product__submit, .update__submit {
       font-size: 2.5rem; }
     .register__login, .login__register {
       font-size: 2rem; } }
@@ -487,7 +487,7 @@ h1 {
     padding-bottom: 30px; }
   .user__title {
     font-size: 3.5rem; }
-  .user__logout, .admin__add-product, .admin__logout, .admin__product-change, .admin__product-delete {
+  .user__logout, .admin__add-product, .admin__logout, .admin__product-update, .admin__product-delete {
     padding: 5px 15px;
     background-color: #D60E0E;
     border-radius: 8px;
@@ -549,7 +549,7 @@ h1 {
       justify-content: space-between; }
     .user__title {
       font-size: 2.6rem; }
-    .user__logout, .admin__add-product, .admin__logout, .admin__product-change, .admin__product-delete {
+    .user__logout, .admin__add-product, .admin__logout, .admin__product-update, .admin__product-delete {
       font-size: 1.5rem; } }
 
 .admin {
@@ -561,7 +561,8 @@ h1 {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center; }
+    align-items: center;
+    margin: 0 auto; }
   .admin__buttons {
     display: flex;
     flex-direction: column; }
@@ -591,7 +592,7 @@ h1 {
     margin: 20px auto;
     display: flex;
     justify-content: space-between; }
-  .admin__product-change {
+  .admin__product-update {
     background-color: #FF9211;
     font-size: 1.6rem; }
   .admin__product-delete {
@@ -600,14 +601,16 @@ h1 {
     .admin {
       width: 100%; }
     .admin__panel {
-      width: 80%;
-      margin: 0 auto; } }
+      width: 80%; } }
   @media (max-width: 500px) {
     .admin__panel {
       width: 90%;
       margin: 0 auto; }
     .admin__add-product, .admin__logout {
       font-size: 1.3rem; } }
+  @media (min-width: 1400px) {
+    .admin__panel {
+      width: 60%; } }
 
 .add-product__form {
   height: 700px; }
@@ -636,6 +639,36 @@ h1 {
     background-color: #FF9211; }
 
 .add-product__image {
+  width: 250px;
+  font-size: 1.5rem !important; }
+
+.update__form {
+  height: 700px; }
+
+.update__sizes {
+  width: 223px; }
+
+.update__sizes-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
+
+.update__size {
+  background-color: #2b2b2b;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  font-size: 1.8rem;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  transition: background-color .2s ease; }
+  .update__size--active {
+    background-color: #FF9211; }
+
+.update__image {
   width: 250px;
   font-size: 1.5rem !important; }
 
