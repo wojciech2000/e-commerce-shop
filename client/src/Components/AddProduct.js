@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { DataContext } from './DataContext'
 import { useDispatch } from 'react-redux'
-import { getAllData } from '../redux/products/productsOperations'
 import axios from 'axios'
 
+import { DataContext } from './DataContext'
+import { getAllData } from '../redux/products/productsOperations'
+
 function AddProduct(props) {
+
+    const dispatch = useDispatch()
 
     const { username, status } = useContext(DataContext)
 
     const [image, setImage] = useState('')
-    const [sizes, setSize] = useState([])
-
-    const dispatch = useDispatch()
-
+    const [sizes, setSizes] = useState([])
     const AvailableSizes = ['XS', 'S', 'M', 'L','XL']
 
     const onChangeImage = e => {
@@ -21,22 +21,36 @@ function AddProduct(props) {
         setImage(file)
     }
 
-    const onClickSize = e => {
+    const onChangeSize = e => {
 
-        const clickedSize = e.target
-        const sizeIsInArray = sizes.find(size => size === clickedSize.textContent)
+        const clickedSize = e.target.name
+        const checkBoxes = document.querySelectorAll('.add-product__checkbox-size')
+
+        const sizeIsInArray = sizes.find(size => size === clickedSize)
 
         if(!sizeIsInArray)
         {
             //add
-            setSize([...sizes, clickedSize.textContent])
-            clickedSize.classList.add('add-product__size--active')
+            setSizes([...sizes, clickedSize])
+            e.target.classList.add('add-product__checkbox-size--active')
         }
         else
         {
             //remove
-            setSize(sizes.filter(size => size !== clickedSize.textContent && size))
-            clickedSize.classList.remove('add-product__size--active')
+            setSizes(sizes.filter(size => size !== clickedSize && size))
+            e.target.classList.remove('add-product__checkbox-size--active')
+        }
+
+        //require at least one size to bo choosen
+        const checkBoxesActive = document.querySelectorAll('.add-product__checkbox-size--active')
+
+        if(checkBoxesActive.length > 0)
+        {
+            checkBoxes.forEach(checkBox => checkBox.removeAttribute('required'))
+        }
+        else
+        {
+            checkBoxes.forEach(checkBox => checkBox.setAttribute('required', true))
         }
     }
 
@@ -55,21 +69,13 @@ function AddProduct(props) {
         formData.append('image', image)
         formData.append('size', sizes)
 
-        if(sizes.length > 0)
-        {
-            axios.post('product/add', formData)
-            .then(res => {
-                status(res.data)
-                dispatch(getAllData()) 
-                props.history.push('/admin')
-            } )
-            .catch(err => console.log(err))
-        }
-        else
-        {
-            status('Wybierz rozmiary')
-        }
-
+        axios.post('product/add', formData)
+        .then(res => {
+            status(res.data)
+            dispatch(getAllData()) 
+            props.history.push('/admin')
+        } )
+        .catch(err => console.log(err))
     }
 
     return (
@@ -97,8 +103,9 @@ function AddProduct(props) {
                     <div className="add-product__sizes-container">
                     {
                         AvailableSizes.map((size, id) => (
-                            <div key={id} className="add-product__size" onClick={onClickSize} >
-                                {size}
+                            <div key={id} className="add-product__size" >
+                                <input type="checkbox" name={size} onChange={onChangeSize} id={size} required={true} className="add-product__checkbox-size" />
+                                <label htmlFor={size}>{size}</label>
                             </div>
                         ))
                     }
@@ -118,11 +125,10 @@ function AddProduct(props) {
 
                 <div>
                     <label htmlFor="image">Zdjęcie</label>
-                    <input type="file" id="image" className="add-product__image" name="image" onChange={onChangeImage} required/>
+                    <input type="file" id="image" className="add-product__image" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={onChangeImage} required/>
                 </div>
 
                 <input type="submit" value="Dodaj" className="add-product__submit"/>
-
                 
             </form>
             

@@ -2,14 +2,17 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { GrBasket } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
+
 import { add } from '../redux/cart/cartActions'
 
 function Product(props) {
 
+    const dispatch = useDispatch()
+
     const id = props.match.params.id
     const { loading, products, error } = useSelector(state => state.products)
     const product = products && products.find(({_id}) => _id === id)
-    const dispatch = useDispatch()
+
     const [quantity, setQuantity] = useState(1)
     const [size, setSize] = useState(product && product.size[0])
 
@@ -23,7 +26,6 @@ function Product(props) {
     const changeQuantity = e => {
         (e.target.value > 0 && e.target.value <= product.quantity && e.target.value) && setQuantity(parseInt(e.target.value))
     }
-   
 
     const chooseSize = e => {
         const sizeDivs = document.querySelectorAll('.sizes-container__size')
@@ -34,7 +36,6 @@ function Product(props) {
         choosenDiv.classList.add('sizes-container__size--active')
         setSize(choosenDiv.textContent)
     }
-
 
     const confirm = () => {
 

@@ -1,9 +1,10 @@
 import React, { useContext } from 'react'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { remove, clear } from '../redux/cart/cartActions'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+
+import { remove, clear } from '../redux/cart/cartActions'
 import { DataContext } from './DataContext'
 
 function Cart(props) {

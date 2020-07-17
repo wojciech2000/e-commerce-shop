@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { FaUserAlt } from 'react-icons/fa'
 import { GrBasket } from 'react-icons/gr'
 import { Link } from 'react-router-dom'
+
 import { DataContext } from './DataContext'
 
 function Header() {

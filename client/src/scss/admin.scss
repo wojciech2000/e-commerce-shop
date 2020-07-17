@@ -50,6 +50,15 @@
         display: flex;
     }
 
+    &__image
+    {
+        width: 100px;
+        height: 130px;
+        border: 1px solid #2C2C2C;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
     &__info
     {
         display: flex;

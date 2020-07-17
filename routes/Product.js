@@ -76,33 +76,20 @@ router.patch('/update/:id', passport.authenticate('jwt', {session: false}), uplo
     const { name, price, brand, quantity } = req.body
 
     Product.findById({_id: req.params.id}, (err, product) => {
-        if(req.file)
-        {
-            //if user update file
-            Product.updateOne({_id: product._id},
-            {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: req.file.filename }},
-            err => {
-            if(err)
-                res.status(500).json(err)
-            else
-            {
-                res.status(201).json('Zaktualizowano')
-                fs.unlinkSync(`uploads/${product.image}`)
-            }
-            })
-        }
+
+        const imageName = req.file ? req.file.filename : product.image
+        
+        Product.updateOne({_id: product._id},
+        {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: imageName }},
+        err => {
+        if(err)
+            res.status(500).json(err)
         else
         {
-            //if user don't update file
-            Product.updateOne({_id: product._id},
-            {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: product.image }},
-            err => {
-            if(err)
-                res.status(500).json(err)
-            else
-                res.status(201).json('Zaktualizowano')
-            })
+            res.status(201).json('Zaktualizowano')
+            req.file && fs.unlinkSync(`uploads/${product.image}`)
         }
+        })
     })    
 })
 

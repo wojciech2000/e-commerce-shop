@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
 import { useSelector } from 'react-redux'
 
 function Products() {
 
-    const [search, setSearch] = useState("")
     const productState = useSelector(state => state.products)
-
     const { loading, products, error } = productState
 
+    const [search, setSearch] = useState("")
+    
     const filterProducts = () => (
         products.filter(product => (
             product.name.toLowerCase().includes(search.toLowerCase())

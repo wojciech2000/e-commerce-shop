@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { DataContext } from './DataContext'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
+
+import { DataContext } from './DataContext'
 
 function User(props) {
 
     const { status, setLogin, login } = useContext(DataContext)
     const [purchasedProducts, setPurchasedProducts] = useState()
-
 
     useEffect(() => {
         axios.get('/user/purchased-products')

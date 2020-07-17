@@ -1,15 +1,16 @@
 import React, { useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { DataContext } from './DataContext'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
+import { DataContext } from './DataContext'
+
 function Login(props) {
+
+    const { status, setLogin,login,  setUsername } = useContext(DataContext)
 
     const [username, setUserName] = useState('')
     const [password, setPassword] = useState('')
-
-    const { status, setLogin,login,  setUsername } = useContext(DataContext)
 
     const logIn = e => {
         e.preventDefault()

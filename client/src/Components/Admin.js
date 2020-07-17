@@ -1,10 +1,11 @@
 import React, { useContext } from 'react'
 import { Redirect, Link } from 'react-router-dom'
-import { DataContext } from './DataContext'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getAllData } from '../redux/products/productsOperations'
 import axios from 'axios'
+
+import { getAllData } from '../redux/products/productsOperations'
+import { DataContext } from './DataContext'
 
 function Admin(props) {
 
@@ -43,7 +44,7 @@ function Admin(props) {
     return (
         <div className="admin">
 
-            {/* {username !== 'admin' && <Redirect to='/' />} */}
+            {username !== 'admin' && <Redirect to='/' />}
 
             <div className="admin__panel">
                 

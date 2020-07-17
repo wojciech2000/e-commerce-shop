@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import { DataContext } from './DataContext'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
-import { getAllData } from '../redux/products/productsOperations'
 import axios from 'axios'
 
+import { getAllData } from '../redux/products/productsOperations'
+import { DataContext } from './DataContext'
+
 function Update(props) {
+
+    const dispatch = useDispatch()
 
     const id = props.match.params.id
     const { loading, products, error } = useSelector(state => state.products)
@@ -15,32 +18,43 @@ function Update(props) {
     const { username, status } = useContext(DataContext)
 
     const [image, setImage] = useState('')
-    const [sizes, setSize] = useState(product && product.size)
-
-    const dispatch = useDispatch()
-
-    const AvailableSizes = ['XS', 'S', 'M', 'L','XL']
+    const [sizes, setSizes] = useState(product && product.size)
+    const AvailableSizes = ['XS', 'S', 'M', 'L','XL']  
 
     const onChangeImage = e => {
         setImage(e.target.files[0])
     }
 
-    const onClickSize = e => {
+    const onChangeSize = e => {
 
-        const clickedSize = e.target
-        const sizeIsInArray = product && sizes.find(size => size === clickedSize.textContent)
+        const clickedSize = e.target.name
+        const checkBoxes = document.querySelectorAll('.update__checkbox-size')
+
+        const sizeIsInArray = sizes.find(size => size === clickedSize)
 
         if(!sizeIsInArray)
         {
             //add
-            setSize([...sizes, clickedSize.textContent])
-            clickedSize.classList.add('update__size--active')
+            setSizes([...sizes, clickedSize])
+            e.target.classList.add('update__checkbox-size--active')
         }
         else
         {
             //remove
-            setSize(sizes.filter(size => size !== clickedSize.textContent && size))
-            clickedSize.classList.remove('update__size--active')
+            setSizes(sizes.filter(size => size !== clickedSize && size))
+            e.target.classList.remove('update__checkbox-size--active')
+        }
+
+        //require at least one size to bo choosen
+        const checkBoxesActive = document.querySelectorAll('.update__checkbox-size--active')
+
+        if(checkBoxesActive.length > 0)
+        {
+            checkBoxes.forEach(checkBox => checkBox.removeAttribute('required'))
+        }
+        else
+        {
+            checkBoxes.forEach(checkBox => checkBox.setAttribute('required', true))
         }
     }
 
@@ -75,7 +89,7 @@ function Update(props) {
     return (
         <div className="update">
 
-            {/* {username !== 'admin' && <Redirect to='/' />} */}
+            {username !== 'admin' && <Redirect to='/' />}
 
             {loading ? <div>loading</div> : error ? <div>error</div> : product && 
 
@@ -102,15 +116,22 @@ function Update(props) {
 
                             if(sizes.find(sizeInState => sizeInState === size))
                             {
-                                return (<div key={id} className="update__size update__size--active" onClick={onClickSize} >
-                                    {size}
-                                </div>)
+                                return (
+
+                                    <div key={id} className="update__size" >
+                                        <input type="checkbox" name={size} onChange={onChangeSize} id={size} checked className="update__checkbox-size update__checkbox-size--active" />
+                                        <label htmlFor={size}>{size}</label>
+                                    </div>
+                                    )
                             }
                             else
                             {
-                                return (<div key={id} className="update__size" onClick={onClickSize} >
-                                    {size}
-                                </div>)
+                                return (
+                                    <div key={id} className="update__size" >
+                                        <input type="checkbox" name={size} onChange={onChangeSize} id={size} className="update__checkbox-size" />
+                                        <label htmlFor={size}>{size}</label>
+                                    </div>
+                                )
                             }
 
                             
@@ -132,16 +153,14 @@ function Update(props) {
 
                 <div>
                     <label htmlFor="imageName">Zdjęcie</label>
-                    <input type="file" id="image" className="update__image" name="image" onChange={onChangeImage} />
+                    <input type="file" id="image" className="update__image" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={onChangeImage} />
                 </div>
 
                 <input type="submit" value="Zmień" className="update__submit" />
 
-                
             </form>
 
             }
-
             
         </div>
     )

@@ -1,11 +1,12 @@
 import React, { useEffect, useContext } from 'react'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import cookie from 'js-cookie'
+import axios from 'axios'
+
 import { DataContext } from './Components/DataContext'
 import { useDispatch } from 'react-redux'
 import { getAllData } from './redux/products/productsOperations'
-import cookie from 'js-cookie'
-import axios from 'axios'
 
 import Header from './Components/Header'
 import Products from './Components/Products'
@@ -21,10 +22,10 @@ import Footer from './Components/Footer'
 
 function App() {
 
-  const { setLogin, setUsername } = useContext(DataContext)
-
   const dispatch = useDispatch()
 
+  const { setLogin, setUsername } = useContext(DataContext)
+  
   useEffect(() => {
     dispatch(getAllData()) 
 
