@@ -73,7 +73,8 @@ function AddProduct(props) {
         .then(res => {
             status(res.data)
             dispatch(getAllData()) 
-            props.history.push('/admin')
+            if(res.data !== 'Podana nazwa produku jest zajęta') props.history.push('/admin')
+            
         } )
         .catch(err => console.log(err))
     }

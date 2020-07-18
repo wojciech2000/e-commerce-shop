@@ -414,6 +414,34 @@ h1 {
     .cart__description {
       margin-top: -5px; } }
 
+.key__icon {
+  position: absolute;
+  right: 10%;
+  top: 100px;
+  border-radius: 50%;
+  border: 1px solid black;
+  font-size: 4rem;
+  padding: 5px;
+  cursor: pointer; }
+
+.key__section {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  right: 10%;
+  top: 150px;
+  display: none;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 10px;
+  background-color: #c5c5c5;
+  border-radius: 10px; }
+  .key__section .key__admin, .key__section .key__user {
+    display: flex;
+    flex-direction: column; }
+  .key__section--toggle {
+    display: flex; }
+
 .register, .login, .add-product, .update {
   min-height: calc(100vh - 110px);
   display: flex;

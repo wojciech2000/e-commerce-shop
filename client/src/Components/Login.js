@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import { DataContext } from './DataContext'
+import Key from './Key'
 
 function Login(props) {
 
@@ -30,6 +31,8 @@ function Login(props) {
         <div className="login">
             
             {login && <Redirect to='/' />}
+
+            <Key />
 
             <form onSubmit={logIn} className="login__form">
 
