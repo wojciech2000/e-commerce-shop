@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import { DataContext } from './DataContext'
+import Loading from './Loading'
+
 
 function User(props) {
 
@@ -44,13 +46,7 @@ function User(props) {
             </div>
 
             {
-                !purchasedProducts ? 
-
-                <div>loading</div>
-
-                :
-
-                purchasedProducts.length > 0 ?
+                !purchasedProducts ? <Loading /> : purchasedProducts.length > 0 ?
 
                 <section className="user__history">
 

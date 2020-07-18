@@ -4,6 +4,8 @@ import { GrBasket } from 'react-icons/gr'
 import { useDispatch } from 'react-redux'
 
 import { add } from '../redux/cart/cartActions'
+import Loading from './Loading'
+import Error from './Error'
 
 function Product(props) {
 
@@ -54,7 +56,7 @@ function Product(props) {
 
     return (
         <div>
-            {loading ? <div>loading</div> : error ? <div>error</div> : product && 
+            {loading ? <Loading /> : error ? <Error /> : product && 
             <div className="details">
                 <img src={`${document.location.origin}/uploads/${product.image}`} className="details__image" alt="zdjęcie produktu"/>
 

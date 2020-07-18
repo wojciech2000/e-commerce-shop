@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
+import Loading from './Loading'
+import Error from './Error'
+
 function Products() {
 
     const productState = useSelector(state => state.products)
@@ -20,7 +23,7 @@ function Products() {
             <input type="text" className="products__search" placeholder="Szukaj..." onChange={e => setSearch(e.target.value)}/>
 
             <div className="products__products-list">
-                {loading ? <div style={{fontSize: '40px'}}>loading</div> : error ? <div>error</div> : products &&
+                {loading ? <Loading /> : error ? <Error /> : products &&
 
                     filterProducts().map(({_id, name, price, image}) => (
 

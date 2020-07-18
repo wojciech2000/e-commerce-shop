@@ -6,6 +6,8 @@ import axios from 'axios'
 
 import { getAllData } from '../redux/products/productsOperations'
 import { DataContext } from './DataContext'
+import Loading from './Loading'
+import Error from './Error'
 
 function Admin(props) {
 
@@ -68,7 +70,7 @@ function Admin(props) {
             
             <div className="admin__products-list">
 
-            {loading ? <div style={{fontSize: '40px'}}>loading</div> : error ? <div>error</div> : products &&
+            {loading ? <Loading /> : error ? <Error /> : products &&
 
             products.map(({ _id, brand, name, price, size, quantity, image}, id) => (
                 

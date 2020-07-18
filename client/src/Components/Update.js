@@ -6,6 +6,8 @@ import axios from 'axios'
 
 import { getAllData } from '../redux/products/productsOperations'
 import { DataContext } from './DataContext'
+import Loading from './Loading'
+import Error from './Error'
 
 function Update(props) {
 
@@ -91,7 +93,7 @@ function Update(props) {
 
             {username !== 'admin' && <Redirect to='/' />}
 
-            {loading ? <div>loading</div> : error ? <div>error</div> : product && 
+            {loading ? <Loading /> : error ? <Error /> : product && 
 
             <form className="update__form" onSubmit={update}>
 
