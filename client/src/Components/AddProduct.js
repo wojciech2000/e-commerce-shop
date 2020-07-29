@@ -72,8 +72,11 @@ function AddProduct(props) {
         axios.post('product/add', formData)
         .then(res => {
             status(res.data)
-            dispatch(getAllData()) 
-            if(res.data !== 'Podana nazwa produku jest zajęta') props.history.push('/admin')
+            if(res.data !== 'Podana nazwa produku jest zajęta')
+            {
+                props.history.push('/admin')
+                dispatch(getAllData()) 
+            } 
             
         } )
         .catch(err => console.log(err))

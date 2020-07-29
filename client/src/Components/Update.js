@@ -20,7 +20,7 @@ function Update(props) {
     const { username, status } = useContext(DataContext)
 
     const [image, setImage] = useState('')
-    const [sizes, setSizes] = useState(product && product.size)
+    const [sizes, setSizes] = useState(product && [...product.size])
     const AvailableSizes = ['XS', 'S', 'M', 'L','XL']  
 
     const onChangeImage = e => {
@@ -80,9 +80,12 @@ function Update(props) {
 
         axios.patch(`/product/update/${props.match.params.id}`, formData )
         .then(res =>{
-            dispatch(getAllData())
             status(res.data)
-            props.history.push('/admin')
+            if(res.data !== 'Podana nazwa produku jest zajęta')
+            {
+                props.history.push('/admin')
+                dispatch(getAllData()) 
+            } 
         }  )
         .catch(err => console.log(err))
 
@@ -154,7 +157,7 @@ function Update(props) {
                 </div>
 
                 <div>
-                    <label htmlFor="imageName">Zdjęcie</label>
+                    <label htmlFor="imageName">Zdjęcie <br />(brak wyboru nie zmieni zdjęcia)</label>
                     <input type="file" id="image" className="update__image" name="image" accept="image/x-png,image/gif,image/jpeg" onChange={onChangeImage} />
                 </div>
 

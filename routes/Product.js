@@ -26,12 +26,12 @@ const upload = multer({storage, fileFilter})
 
 router.post('/add', passport.authenticate('jwt', {session: false}), upload.single('image'), (req,res) => {
 
-    Product.find({name: req.body.name}, (err, product) => {
+    Product.findOne({name: req.body.name}, (err, product) => {
 
         if(err)
             res.status(500).json(err)
 
-        if(product.length == 0)
+        if(!product)
         {
             const product = new Product({
                 name: req.body.name,
@@ -65,7 +65,7 @@ router.delete('/delete/:id/:filename', passport.authenticate('jwt', {session: fa
         else
         {
             fs.unlinkSync(`uploads/${req.params.filename}`)
-            res.status(201).json('removed')
+            res.status(201).json('Produkt usunięty')
         }
 
     })
@@ -75,22 +75,38 @@ router.patch('/update/:id', passport.authenticate('jwt', {session: false}), uplo
 
     const { name, price, brand, quantity } = req.body
 
-    Product.findById({_id: req.params.id}, (err, product) => {
-
-        const imageName = req.file ? req.file.filename : product.image
-        
-        Product.updateOne({_id: product._id},
-        {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: imageName }},
-        err => {
+    Product.findOne({name: req.body.name}, (err, product) => {
         if(err)
             res.status(500).json(err)
+
+        //check if name is already taken and this name doesn't belong to being changed product
+        if(!product || product._id == req.params.id)
+        {
+            Product.findById({_id: req.params.id}, (err, product) => {
+
+                const imageName = req.file ? req.file.filename : product.image
+                
+                Product.updateOne({_id: product._id},
+                {$set: { name, price, size: req.body.size.split(','), brand, quantity, image: imageName }},
+                err => {
+                if(err)
+                    res.status(500).json(err)
+                else
+                {
+                    res.status(201).json('Zaktualizowano')
+                    req.file && fs.unlinkSync(`uploads/${product.image}`)
+                }
+                })
+            })
+        }
         else
         {
-            res.status(201).json('Zaktualizowano')
-            req.file && fs.unlinkSync(`uploads/${product.image}`)
+            res.json('Podana nazwa produku jest zajęta')
         }
-        })
-    })    
+
+    })
+
+    
 })
 
 router.get('/datas', (req,res) => {
